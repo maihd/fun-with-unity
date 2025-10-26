@@ -1,0 +1,14 @@
+.DS_Store
+
+.vs
+.vscode
+
+.utmp
+Logs
+Temp
+Library
+ServerData
+UserSettings
+
+*.sln
+*.csproj
