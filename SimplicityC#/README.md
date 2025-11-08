@@ -10,6 +10,7 @@
 
 ## Same techniques, ideas
 - Orthodox C++
+- Compression-oriented Programming
 - Grug-brained Developer
 - Odin and other modern better C languages
 - Beef Programming Language (C# syntaxes with Orthodox C++ semantics)
