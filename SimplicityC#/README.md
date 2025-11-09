@@ -17,7 +17,7 @@
 
 ## Topics need deep dive
 - Delegates, lambdas, closures
-- Avoid GC
+- Avoid GC: structs, pooling, avoid lambda bindings if available, native collections
 - Data oriented in C#
 - When common "Clean Code" approachs failed
 - Unity GameObjects, Components, how to use its in simplicity way
