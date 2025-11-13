@@ -30,4 +30,8 @@ Avoid Unity UI Toolkit, just do ImGui that works.
 
 ## Content creation 
 Grug like WYSIWYG approach, it's truthly help much. Grug are dumb, and cant afford perfections, so Grug just create, review, modify, or create new. Repeat until it's worked like Grug want. This approach including in all manner of content creations: character, level, environment, animation, story, dialogue, quest, and after all scripting. Some best practices Grug thought that good:
-- When creating character: create a character scene, like trainning room in esport games. Change data, replay, repat
+- When creating character: create a character scene, like trainning room in esport games. Change data, replay, repeat until final result.
+- Level and environment: when have ideas, create new, add test character, exploring, reviewing, repeat until final result.
+- Animation: Unity Editor have good supports, just editting and reviewing, until final result.
+- Story, dialogue, quest: 
+- Scripting: Hot reload or visual scripting
