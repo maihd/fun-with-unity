@@ -15,9 +15,10 @@ Currently Unity6 supported C# version upto minimal C# 10.
 - Be careful with record, Unity serialization does not support record
 
 ## Performance features
-- Function pointer
-- Mono internal call
-- Object pointer
+- Function pointer: should only use UnmanagedFunctionPointerAttribute, avoid function pointer syntax
+- Mono internal call: MonoPInvokeCallbackAttribute
+- Object pointer: Do some tricks to get object address, and convert to IntPtr. Aware of pinning object, if object is UnityObject, they already pinned for you.
+- Export function to native side: static function with MonoPInvokeCallbackAttribute
 
 ## Unique in Unity
 - Burst Compiler
