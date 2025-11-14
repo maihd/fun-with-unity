@@ -4,7 +4,7 @@ Unity have its own Net runtime which is called Mono (forked).
 Currently Unity6 supported C# version upto minimal C# 10.
 
 ## Setup requirement
-- Create a `csc.rsp` file in Assets folder
+- Create a `csc.rsp` file in scripts or .asmdef folder
 
 ## Ergonomics features
 - Tuple
@@ -12,6 +12,7 @@ Currently Unity6 supported C# version upto minimal C# 10.
 - Global Usings
 - Tuple deconstruction
 - Record deconstruction
+- Be careful with record, Unity serialization does not support record
 
 ## Performance features
 - Function pointer
@@ -22,3 +23,7 @@ Currently Unity6 supported C# version upto minimal C# 10.
 - Burst Compiler
 - Job System
 - DOTS in common
+
+## Compiler
+- C# Roslyn
+- You can do C# code generation in Unity
