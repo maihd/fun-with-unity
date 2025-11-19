@@ -28,6 +28,8 @@ namespace Minity.XLuaTools
         };
         
         public LuaAsset Code;
+
+        public bool ReadMetaFromCode;
         
         public EventCullFlag EventCulling = EventCullFlag.Basic | EventCullFlag.Updating;
         

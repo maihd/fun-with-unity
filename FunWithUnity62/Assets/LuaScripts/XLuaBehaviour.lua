@@ -1,6 +1,6 @@
 --[[
-int value
-
+number count    10
+string message  "Hello World Change"
 ]]
 
 CS.UnityEngine.Debug.Log(LuaScriptCaller)
