@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: abe4c5ca91772ea4fae0ae15603c10e4
 PluginImporter:
-  serializedVersion: 1
+  externalObjects: {}
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
-  isPreloaded: 0
+  defineConstraints: []
+  isPreloaded: 1
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
     Android:
       enabled: 0
@@ -12,43 +17,26 @@ PluginImporter:
         CPU: AnyCPU
     Any:
       enabled: 0
-      settings: {}
+      settings:
+        Exclude Editor: 0
+        Exclude Linux64: 0
+        Exclude OSXUniversal: 1
+        Exclude Win: 1
+        Exclude Win64: 0
     Editor:
       enabled: 1
       settings:
         CPU: x86_64
         DefaultValueInitialized: true
         OS: Windows
-    Linux:
-      enabled: 0
-      settings:
-        CPU: None
     Linux64:
       enabled: 1
       settings:
         CPU: x86_64
-    LinuxUniversal:
-      enabled: 0
-      settings:
-        CPU: x86_64
-    OSXIntel:
-      enabled: 0
-      settings:
-        CPU: None
-    OSXIntel64:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
     OSXUniversal:
       enabled: 0
       settings:
         CPU: x86_64
-    WP8:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-        DontProcess: False
-        PlaceholderPath: 
     Win:
       enabled: 0
       settings:
@@ -56,7 +44,7 @@ PluginImporter:
     Win64:
       enabled: 1
       settings:
-        CPU: AnyCPU
+        CPU: x86_64
     WindowsStoreApps:
       enabled: 0
       settings:

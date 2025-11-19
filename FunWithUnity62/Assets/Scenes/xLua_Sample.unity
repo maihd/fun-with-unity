@@ -466,7 +466,30 @@ MonoBehaviour:
   Injections:
   - Name: LuaScriptCaller
     Object: {fileID: 1920017387}
-    Component: {fileID: 0}
+    Component: {fileID: 1920017388}
+    Number: 0
+  Fields:
+    Keys:
+    - message
+    - count
+    Values:
+    - Type: 3
+      AsBool: 0
+      AsNumber: 0
+      AsString: Hello world from Unity Editor
+      AsTable:
+        rid: -2
+    - Type: 2
+      AsBool: 0
+      AsNumber: 5
+      AsString: 
+      AsTable:
+        rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!4 &969524600
 Transform:
   m_ObjectHideFlags: 0

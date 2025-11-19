@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Minity.XLuaTools.EventSupports;
+using Unity.VisualScripting;
 using UnityEngine;
 using XLua;
 using Object = UnityEngine.Object;
@@ -29,7 +30,9 @@ namespace Minity.XLuaTools
         public LuaAsset Code;
         
         public EventCullFlag EventCulling = EventCullFlag.Basic | EventCullFlag.Updating;
+        
         public LuaInjection[] Injections;
+        public SerializableLuaTable Fields;
         
         internal LuaTable ScriptScopeTable;
 
@@ -72,6 +75,31 @@ namespace Minity.XLuaTools
                 {
                     ScriptScopeTable.Set(injection.Name, injection.Object);
                 }
+            }
+            
+            for (int i = 0, n = Fields.Keys.Length; i < n; i++)
+            {
+                var key = Fields.Keys[i];
+                var value = Fields.Values[i];
+
+                switch (value.Type)
+                {
+                    case SerializableLuaValue.ValueType.Nil:
+                        // ScriptScopeTable.Set(key, null);
+                        break;
+
+                    case SerializableLuaValue.ValueType.Bool:
+                        ScriptScopeTable.Set(key, value.AsBool);
+                        break;
+                        
+                    case SerializableLuaValue.ValueType.Number:
+                        ScriptScopeTable.Set(key, value.AsNumber);
+                        break;
+                        
+                    case SerializableLuaValue.ValueType.String:
+                        ScriptScopeTable.Set(key, value.AsString);
+                        break;
+                }                 
             }
             
             LuaEnvGuard.Environment.DoString(Code.Code, Code.name, ScriptScopeTable);
