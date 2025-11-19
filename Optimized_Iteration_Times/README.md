@@ -22,6 +22,11 @@ How to optimized Unity Editor build, domain reload, compilation, asset processin
 - Even we have incremental assets processing, when you share project to other members, they will need importing agains, make its slow, use Unity Accelerator to avoid that.
 - When you have no knowledges about where/which make Unity Editor slow, use Project Auditor to profiling (and others).
 
+## Assets that can import on-demand and in parallel
+- Texture be streaming
+- Shader can do on-demand compile
+- Turn off scene reload when enter play mode
+
 ## Resources
 - https://johnaustin.io/articles/2020/domain-reloads-in-unity
 - https://blog.s-schoener.com/2023-08-16-why-your-unity-project-is-slow/
