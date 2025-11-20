@@ -9,6 +9,10 @@ CS.UnityEngine.Debug.Log(Self)
 
 local x = 1
 
+xlua.hotfix(CS.LuaScriptCaller, "Greeting", function(self)
+    print("CS.LuaScriptCaller", "Hot-fixed function, called from lua.");
+end)
+
 function start()
     LuaScriptCaller:Greeting()
 end

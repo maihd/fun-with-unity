@@ -9,3 +9,10 @@ Mai space to explore, experimental, do fun stuffs in Unity (as I need to help my
 - The rise of content creation centric methods to create game over programming only method usually done by game developers
 - Balancing betweening programming and content creating
 - A book? or at least guidelines? or less, best practices?
+
+## Topics explored
+- Programming mindset
+- Content creation mindset
+- xLua and Lua scripting
+- xLua hotfix
+- Fast scripting iterations
