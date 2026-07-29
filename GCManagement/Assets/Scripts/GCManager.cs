@@ -33,10 +33,10 @@ public class GCManager : MonoBehaviour
         if (gcBudget > 0)
         {
         #if !UNITY_EDITOR
-            GarbageCollector.CollectIncremental(gcBudget / 10);
+            GarbageCollector.CollectIncremental(gcBudget);
         #endif
         }
-        
+
         // var gcStep = 100UL;
         // while (gcBudget > 0 && GarbageCollector.CollectIncremental(gcStep))
         // {
