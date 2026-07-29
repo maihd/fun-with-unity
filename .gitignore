@@ -4,6 +4,7 @@
 .vscode
 
 .utmp
+Build
 Logs
 Temp
 Library
@@ -11,4 +12,5 @@ ServerData
 UserSettings
 
 *.sln
+*.slnx
 *.csproj
