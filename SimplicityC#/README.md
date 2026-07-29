@@ -1,12 +1,13 @@
 # Simplicity Coding Style in C# for Unity
 
+
 ## Simple rules
 - Avoid deep hierarchy, multi-connected classes
 - Prefer dumb data, simple struct when doing logic processing
 - Prefer simple and works functions when doing computings. Sometime procedural programming is just works.
 - Avoid metaprogramming, reflection when you dont need it
 - Make the code the problem at hands, so study your problems before do coding
-- Use concrete solutions first, only use abstractions when you need it
+- Use concrete solutions first, only use abstractions when you really need it
 - Use and understand your platforms, avoid create new abstractions over your platform
 - C# maybe a powerful language, but it has flaws, wrong use cause payback
 - In common use of C#, we only need the scripting side of C#.
@@ -35,11 +36,10 @@ For simplicity and reduce cognition loads, you should use common naming conventi
 
 
 ## Topics need deep dive
-- Delegates, lambdas, closures
+- Delegates, lambdas, closures. Callback make your codebase can be have callback hell, so if you can avoid it, avoid!
 - Avoid GC: structs, pooling, avoid lambda bindings if available, native collections
-- Data oriented in C#
-- Procedural programming in C#
-- When common "Clean Code" approachs failed
+- Data oriented in C# and Procedural programming in C#. Theses two paradigms help each others.
+- When and why common "Clean Code" approachs failed
 - Unity GameObjects, Components, how to use its in simplicity way
 
 
