@@ -17,13 +17,20 @@ This document provide helpful information to doing native programming (mainly fo
     - Object to pointer and UnityObject internal native pointer
     - Static functions that call method from Unity Object
     - If you use vanilla C# object in your native code, you need to pin C# object (Google this)
+- Unity Native & Performance features:
+    - Unity DOTS
+    - Unity Native collections
+    - Unity Burst compiler
+    - Unity Job System
+    - Unity Unsafe utility
+    - Unity Player Loop
 - Even you use OOP language like C++ or Beef, you still need a framework (existed or custom) to doing things in fast ways. So may be native languages depend on your favorites.
 - If you can do complex and hard works, try combine Unity ECS with native code.
 - Roll your own ECS is also a choice. Also you can use Simulation pattern (or architecture) to make game logic work on native side, and sync to Unity.
 - Still, you should keep things simple, only for gameplay code, library is another story.
 
 
-## Services
+## Third Party Services
 - Mostly supported by creator, because Unity is widely used.
 - If they do not support Unity, there is a chance that they have support C#.
 - If still not, find another options.
