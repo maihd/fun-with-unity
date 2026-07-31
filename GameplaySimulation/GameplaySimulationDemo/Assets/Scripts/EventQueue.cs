@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Mono.Cecil.Cil;
 using Unity.Burst;
 using Unity.Collections;
-
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -51,45 +51,57 @@ public struct EventData
 }
 
 
-public struct EventQueue
+public struct EventBuffer
 {
-    public Queue<Event> events;
+    public Event[] events;
 
-    public EventQueue(int capacity)
+    public int count;
+    public int capacity => events.Length;
+
+    public EventBuffer(int capacity)
     {
-        events = new Queue<Event>(capacity);
+        events = new Event[capacity];
+        count = 0;
+    }
+    
+    public void Add(Event eventData)
+    {
+        events[count] = eventData;
+        count += 1;
+    }
+
+    public void Clear()
+    {
+        count = 0;
     }
 }
 
 
 public static class EventRegistry
 {
-    static EventQueue queue = new EventQueue(4096);
+    static EventBuffer[] queues = { new EventBuffer(4096), new EventBuffer(4096) };
+    static int currentIndex = 0;
 
-    public static void Init(int eventCapacity)
-    {
-        queue = new EventQueue(eventCapacity);
-    }
+    public static ref EventBuffer Current => ref queues[currentIndex];
 
-    public static void Shutdown()
+    // public static void Init(int eventCapacity)
+    // {
+    //     queue = new EventQueue(eventCapacity);
+    // }
+
+    // public static void Shutdown()
+    // {
+    //     // queue.events.Dispose();
+    //     queue.events = default;
+    // }
+
+    public static void SwapBuffers()
     {
-        // queue.events.Dispose();
-        queue.events = default;
+        currentIndex = (currentIndex + 1) % queues.Length;
     }
 
     public static void QueueEvent(Event eventData)
     {
-        queue.events.Enqueue(eventData);
-    }
-
-    public static Event? PollEvent()
-    {
-        Event data;
-        return queue.events.TryDequeue(out data) ? data : null;
-    }
-
-    public static bool TryPollEvent(out Event data)
-    {
-        return queue.events.TryDequeue(out data);
+        Current.Add(eventData);
     }
 }

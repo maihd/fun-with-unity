@@ -4,6 +4,7 @@ using UnityEngine.PlayerLoop;
 
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public static class MainLoop
 {
@@ -52,8 +53,13 @@ public static class MainLoop
     {
         // Debug.Log("MainLoop running...");
 
-        while (EventRegistry.TryPollEvent(out var eventData))
+        ref var eventBuffer = ref EventRegistry.Current;
+        EventRegistry.SwapBuffers();
+
+        for (int i = 0, n = eventBuffer.count; i < n; i++)
         {
+            var eventData = eventBuffer.events[i];
+
             switch (eventData.kind)
             {
                 case EventKind.Physics:
@@ -64,5 +70,7 @@ public static class MainLoop
                     break;
             }
         }
+
+        eventBuffer.Clear();
     }
 }
