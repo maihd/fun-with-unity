@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Mono.Cecil.Cil;
 using Unity.Burst;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -63,6 +64,8 @@ public struct EventBuffer
         events = new Event[capacity];
         count = 0;
     }
+
+    public Event this[int index] => events[index];
     
     public void Add(Event eventData)
     {

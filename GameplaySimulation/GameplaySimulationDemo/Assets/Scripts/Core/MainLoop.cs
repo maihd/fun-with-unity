@@ -56,21 +56,16 @@ public static class MainLoop
         ref var eventBuffer = ref EventRegistry.Current;
         EventRegistry.SwapBuffers();
 
-        for (int i = 0, n = eventBuffer.count; i < n; i++)
-        {
-            var eventData = eventBuffer.events[i];
-
-            switch (eventData.kind)
-            {
-                case EventKind.Physics:
-                    Debug.Log("Receiving physics event. Kind: " + eventData.data.physics.kind);
-                    break;
-
-                default:
-                    break;
-            }
-        }
+        // Add more handle here
+        EntitySystem.HandleEvents(eventBuffer);
+        PhysicsSystem.HandleEvents(eventBuffer);
 
         eventBuffer.Clear();
+
+        // Handle update
+        EntitySystem.Update();
+
+        // Handle command to notify other systems
+        
     }
 }
