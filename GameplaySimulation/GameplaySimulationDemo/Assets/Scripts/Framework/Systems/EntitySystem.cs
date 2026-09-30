@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEditor;
@@ -11,9 +12,9 @@ public static unsafe class EntitySystem
     }
 
 
-    private static HandleMap<Entity> entitiesMap;
 
     private static HandleMap<Entity> entities;
+    private static List<GameObject> gameObjects;
 
 
     private static Handle AllocEntity(Entity entity)
@@ -28,26 +29,61 @@ public static unsafe class EntitySystem
         entities.Remove(handle);
     }
 
+    public static void Init()
+    {
+        Debug.Log("EntitySystem.Init()");
+
+        entities = new HandleMap<Entity>(4096);
+        gameObjects = new List<GameObject>();
+    }
+
+    public static void Shutdown()
+    {
+        entities.Dispose();
+        gameObjects = null;
+    }
+
 
     public static Handle Spawn(GameObject prefab, float3 position = default, quaternion rotation = default)
     {
         GameObject go = GameObject.Instantiate(prefab, position, rotation);
 
-        return AllocEntity(new Entity
+        return RegisterGameObject(go);
+    }
+
+
+    public static Handle RegisterGameObject(GameObject go)
+    {
+        var handle = AllocEntity(new Entity
         {
-            position = position,
-            rotation = rotation,
+            position = go.transform.position,
+            rotation = go.transform.rotation,
             scale = go.transform.localScale,
         });
+
+        var index = entities.GetIndex(handle);
+        if (index >= gameObjects.Count)
+        {
+            gameObjects.Insert(index, go);
+        }
+        else
+        {
+            gameObjects[index] = go;
+        }
+
+        return handle;
     }
 
 
     public static void Update()
     {
+        float dt = Time.deltaTime;
+
         // Systems like: Moving, Rotating, Targeting, Aiming, Following,...
         for (int i = 0, n = entities.Count; i < n; i++)
         {
             ref var entity = ref entities.elements.ElementAt(i);
+            entity.rotation = Quaternion.AngleAxis((float)Time.time * 90, new Vector3(0, 1, 0));
         }
     }
 
@@ -64,6 +100,16 @@ public static unsafe class EntitySystem
                 default:
                     break;
             }
+        }
+    }
+
+    public static void SyncToGameObjects()
+    {
+        for (int i = 0, n = entities.Count; i < n; i++)
+        {
+            ref var entity = ref entities.elements.ElementAt(i);
+            var gameObject = gameObjects[i];
+            gameObject.transform.rotation = entity.rotation;
         }
     }
 }

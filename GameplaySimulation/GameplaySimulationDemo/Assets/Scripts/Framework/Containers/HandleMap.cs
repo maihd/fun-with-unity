@@ -21,15 +21,32 @@ public struct SparseIndex
 
 [BurstCompile]
 public unsafe struct HandleMap<T>
-    where T: unmanaged
+    where T : unmanaged
 {
-    public NativeList<T>                elements;
-    public NativeList<Handle>           handles;
-    public NativeList<SparseIndex>      sparseIndices;
-    public int                          nextIndex;
+    public NativeList<T> elements;
+    public NativeList<Handle> handles;
+    public NativeList<SparseIndex> sparseIndices;
+    public int nextIndex;
 
 
     public int Count => elements.Length;
+
+
+    public HandleMap(int capacity)
+    {
+        elements = new NativeList<T>(capacity, Allocator.Persistent);
+        handles = new NativeList<Handle>(capacity, Allocator.Persistent);
+        sparseIndices = new NativeList<SparseIndex>(capacity, Allocator.Persistent);
+        nextIndex = 0;
+    }
+
+    public void Dispose()
+    {
+        elements.Dispose();
+        handles.Dispose();
+        sparseIndices.Dispose();
+        nextIndex = 0;
+    }
 
 
     public T* this[Handle handle]
@@ -52,6 +69,22 @@ public unsafe struct HandleMap<T>
 
             return null;
         }
+    }
+
+    public int GetIndex(Handle handle)
+    {
+        if (handle.index >= sparseIndices.Length)
+        {
+            return -1;
+        }
+
+        var entry = sparseIndices[handle.index];
+        if (entry.generation == handle.generation)
+        {
+            return entry.indexOrNext;
+        }
+
+        return -1;
     }
 
     public Handle Add(T value)
@@ -87,7 +120,7 @@ public unsafe struct HandleMap<T>
             var entry = new SparseIndex
             {
                 indexOrNext = index,
-                generation = 0,  
+                generation = 0,
             };
 
             sparseIndices.Add(entry);
